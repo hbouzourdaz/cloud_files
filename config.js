@@ -7,7 +7,7 @@
 
 const APP_CONFIG = {
     // معرّف الأرشيف في JSONBin (الإفتراضي)
-    DEFAULT_BIN_ID: '6a36d626da38895dfee3c734',
+    DEFAULT_BIN_ID: '6a71fa41da38895dfeb8c6aa',
 
     // كلمة مرور لوحة التحكم (الإفتراضية)
     DEFAULT_PASSWORD: 'Hakim@100',
