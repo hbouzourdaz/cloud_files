@@ -1,0 +1,1947 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأستاذ حكيم بوزورداز - أرشيف العلوم الفيزيائية</title>
+    <meta name="description"
+        content="موقع الأستاذ حكيم بوزورداز لدعم تلاميذ المتوسط والثانوي في مادة العلوم الفيزيائية. أرشيف الفروض، الإختبارات، والحلول النموذجية.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="الأرشيف التعليمي - الأستاذ حكيم بوزورداز">
+    <meta property="og:description" content="البنك الرقمي للفروض والاختبارات مع التصحيح النموذجي.">
+    <meta property="og:image" content="https://media.licdn.com/dms/image/v2/D4D03AQGcCDz-jupudQ/profile-displayphoto-crop_800_800/B4DZlPUGdjGkAI-/0/1757972298603?e=1772668800&v=beta&t=n06FAFIQ6jRaM1bn56V3hzWP0fEiyjDBYynmQvrdmas">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpg" href="https://hajzdz.vercel.app/logo.jpg">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- SheetJS for Excel/CSV processing -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <style>
+        :root {
+            /* Education Pro Color Palette - Clean, Academic, trustworthy */
+            --color-primary: #006064;
+            /* Cyan 900 */
+            --color-primary-light: #4DD0E1;
+            /* Cyan 300 */
+            --color-on-primary: #ffffff;
+
+            --color-surface: #ffffff;
+            --color-surface-dim: #f8f9fa;
+            --color-surface-border: #e0e0e0;
+
+            --color-text-main: #202124;
+            --color-text-sub: #5f6368;
+
+            --color-folder: #FBC02D;
+            /* Classic Folder Yellow */
+            --color-folder-light: #FFF9C4;
+
+            --shadow-sm: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+            --shadow-md: 0 1px 3px 0 rgba(60, 64, 67, 0.3), 0 4px 8px 3px rgba(60, 64, 67, 0.15);
+
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-full: 9999px;
+
+            --font-family: 'Almarai', sans-serif;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .dark {
+            --color-primary: #80DEEA;
+            --color-primary-light: #006064;
+            --color-on-primary: #00363a;
+
+            --color-surface: #1e1e1e;
+            --color-surface-dim: #2d2d2d;
+            --color-surface-border: #444746;
+
+            --color-text-main: #e3e3e3;
+            --color-text-sub: #c4c7c5;
+
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+            --shadow-md: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 4px 8px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-surface-dim);
+            color: var(--color-text-main);
+            transition: background-color 0.15s, color 0.15s;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-weight: 500;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Archive Layout Grid */
+        .archive-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px 16px;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* Header Style */
+        .archive-header {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-surface-border);
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 14px;
+            color: var(--color-text-sub);
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 16px;
+            background-color: var(--color-surface);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-surface-border);
+            box-shadow: var(--shadow-sm);
+            scrollbar-width: none;          /* Firefox */
+            -ms-overflow-style: none;       /* IE / Edge */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        @media (max-width: 768px) {
+            .breadcrumbs {
+                font-size: 12px;
+                padding: 6px 12px;
+                gap: 2px;
+            }
+        }
+
+        .breadcrumbs::-webkit-scrollbar {
+            display: none;                  /* Chrome / Safari / Opera */
+        }
+
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.15s, color 0.15s;
+            color: var(--color-text-sub);
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .breadcrumb-item {
+                padding: 4px 8px;
+                gap: 4px;
+            }
+        }
+
+        .breadcrumb-item:hover {
+            background-color: var(--color-surface-dim);
+            color: var(--color-primary);
+        }
+
+        .breadcrumb-item.active {
+            font-weight: 600;
+            color: var(--color-primary);
+            background-color: rgba(0, 96, 100, 0.08);
+            pointer-events: none;
+        }
+
+        .dark .breadcrumb-item.active {
+            background-color: rgba(128, 222, 234, 0.12);
+            color: var(--color-primary);
+        }
+
+        .breadcrumb-divider {
+            color: var(--color-surface-border);
+            font-size: 18px;
+            user-select: none;
+        }
+
+        /* Folder Grid */
+        .folder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        @media (max-width: 640px) {
+            .folder-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .full-width-mobile {
+                grid-column: span 2;
+                flex-direction: row !important;
+                background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-primary-light) 300%) !important;
+            }
+        }
+
+        .folder-card {
+            background-color: var(--color-surface);
+            border: 1.5px solid var(--color-surface-border);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            cursor: pointer;
+            transition: border-color 0.15s, box-shadow 0.15s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .folder-card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-primary);
+            background-color: var(--color-surface);
+        }
+
+        .folder-icon {
+            color: var(--color-folder);
+            font-variation-settings: 'FILL' 1;
+            font-size: 48px;
+        }
+
+        /* File List (Table Style) */
+        .file-list-container {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-surface-border);
+            overflow: hidden;
+            display: none;
+            /* Hidden by default */
+        }
+
+        .file-list-header {
+            display: grid;
+            grid-template-columns: 50px 2fr 1fr 1.5fr;
+            padding: 12px 16px;
+            border-bottom: 2px solid var(--color-surface-border);
+            font-weight: 700;
+            color: var(--color-text-sub);
+            font-size: 14px;
+        }
+
+        .file-list-header span:first-child {
+            grid-column: span 2;
+        }
+
+        .file-list-header span:last-child {
+            text-align: left;
+        }
+
+        .file-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .file-row {
+            display: grid;
+            grid-template-columns: 50px 2fr 1fr 1.5fr;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--color-surface-border);
+            align-items: center;
+        }
+
+        .file-row:last-child {
+            border-bottom: none;
+        }
+
+        .file-row:hover {
+            background-color: var(--color-surface-dim);
+        }
+
+        .file-icon {
+            color: #EA4335;
+            /* PDF Red */
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* Mobile File List adjustments */
+        @media (max-width: 768px) {
+            .file-list-header {
+                display: none;
+                /* Hide header on mobile */
+            }
+
+            .file-list-container {
+                background-color: transparent;
+                box-shadow: none;
+                overflow: visible;
+            }
+
+            .file-row {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 12px;
+                padding: 16px;
+                margin-bottom: 12px;
+                background-color: var(--color-surface);
+                border: 1px solid var(--color-surface-border);
+                border-radius: var(--radius-md);
+                box-shadow: var(--shadow-sm);
+                position: relative;
+                align-items: start;
+            }
+
+            .file-row:hover {
+                background-color: var(--color-surface);
+                transform: translateY(-2px);
+                border-color: var(--color-primary);
+            }
+
+            .file-actions {
+                grid-column: 1 / -1;
+                /* Span full width */
+                width: 100%;
+                display: flex;
+                gap: 8px;
+                margin-top: 12px;
+                padding-top: 12px;
+                border-top: 1px solid var(--color-surface-border);
+            }
+
+            .btn-action {
+                justify-content: center;
+                height: 44px;
+                /* Better touch target */
+                font-size: 14px;
+            }
+
+            .mobile-label {
+                display: inline-block;
+                margin-left: 4px;
+                font-weight: 500;
+                color: var(--color-text-sub);
+                font-size: 12px;
+            }
+        }
+
+        /* Filter Chip Styles */
+        .filter-chip {
+            background-color: var(--color-surface-dim);
+            color: var(--color-text-sub);
+            border: 1px solid var(--color-surface-border);
+            transition: background-color 0.15s, color 0.15s;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+        }
+
+        .filter-chip:hover {
+            background-color: var(--color-surface-border);
+        }
+
+        .filter-chip.active {
+            background-color: var(--color-primary);
+            color: var(--color-on-primary);
+            border-color: var(--color-primary);
+        }
+
+        /* Action Buttons */
+        .btn-action {
+            padding: 6px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-on-primary);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: var(--color-surface-dim);
+            border: 1px solid var(--color-surface-border);
+            color: var(--color-text-main);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-surface-border);
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes border-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(77, 208, 225, 0.4), inset 0 0 0 0 rgba(77, 208, 225, 0.1);
+            }
+
+            50% {
+                box-shadow: 0 0 20px 2px rgba(77, 208, 225, 0.3), inset 0 0 10px 0 rgba(77, 208, 225, 0.2);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(77, 208, 225, 0), inset 0 0 0 0 rgba(77, 208, 225, 0);
+            }
+        }
+
+        .glowing-border {
+            border-color: var(--color-primary-light) !important;
+            border-width: 2px !important;
+            animation: border-pulse 2s infinite ease-in-out;
+            background: linear-gradient(to right, transparent, rgba(77, 208, 225, 0.05), transparent);
+            background-size: 200% 100%;
+            animation: border-pulse 2s infinite ease-in-out, shimmer-row 3s infinite linear;
+        }
+
+        @keyframes shimmer-row {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-card {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        .modal-overlay.modal-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Loader */
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid var(--color-surface-border);
+            border-bottom-color: var(--color-primary);
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Helpers */
+        .hidden {
+            display: none !important;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        #dynamic-folders {
+            display: contents;
+        }
+
+        /* Document Viewer Card styles */
+        .viewer-card {
+            background-color: var(--color-surface);
+            border-radius: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transform: translateY(100%);
+            transition: transform 0.35s cubic-bezier(0.32, 0.94, 0.6, 1);
+        }
+        .modal-overlay.modal-open .viewer-card {
+            transform: translateY(0);
+        }
+
+        /* Print Media Styles */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .archive-layout, .archive-header, .breadcrumbs, #grades-search-form, #preloader, button {
+                display: none !important;
+            }
+            #grades-view, #grades-result-card {
+                display: block !important;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100% !important;
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader"
+        class="fixed inset-0 bg-[var(--color-surface)] z-[9999] flex items-center justify-center transition-opacity duration-500">
+        <span class="loader"></span>
+    </div>
+
+    <!-- Layout -->
+    <div class="archive-layout">
+
+        <!-- Header -->
+        <header class="archive-header">
+            <div class="flex items-center gap-4">
+                <div id="secret-logo" class="w-10 h-10 rounded-full overflow-hidden border border-[var(--color-surface-border)]">
+                    <img src="https://hbouzourdaz.space/avatar.png" alt="Logo" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-xl md:text-2xl tracking-tight">الأستاذ بوزورداز</h1>
+                    <p class="text-sm text-[var(--color-text-sub)] font-medium">أرشيف العلوم الفيزيائية</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <a href="results"
+                    class="p-2 rounded-full hover:bg-[var(--color-surface-dim)] text-[var(--color-text-sub)] flex items-center gap-1 text-xs font-bold transition-colors" title="نتائجي">
+                    <span class="material-symbols-rounded" style="font-size:20px;">assignment_turned_in</span>
+                    <span class="hidden md:inline">نتائجي</span>
+                </a>
+                <button onclick="toggleTheme()"
+                    class="p-2 rounded-full hover:bg-[var(--color-surface-dim)] text-[var(--color-text-sub)]">
+                    <span class="material-symbols-rounded" id="theme-icon">dark_mode</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dynamic Breadcrumbs -->
+        <nav class="breadcrumbs" id="breadcrumbs">
+            <!-- Injected by JS -->
+            <div class="breadcrumb-item active">
+                <span class="material-symbols-rounded text-[18px]">home</span>
+                الرئيسية
+            </div>
+        </nav>
+
+        <!-- MAIN VIEW: Folders (Level Selection) -->
+        <section id="folder-view" class="folder-grid">
+
+            <!-- Dynamic folders injected by JS -->
+            <div id="dynamic-folders"></div>
+
+            <!-- Homepage Static Cards -->
+            <div id="homepage-static-cards" style="display: contents;">
+                <!-- Folder: Personal Site -->
+                <a href="https://hbouzourdaz.space/" target="_blank"
+                    class="folder-card group full-width-mobile border-primary/20 hover:border-[var(--color-primary)]">
+
+                    <!-- Layout: Row on Mobile (via CSS), Column on Desktop -->
+                    <div class="flex md:flex-row justify-between items-start md:mb-1">
+                        <div
+                            class="w-14 h-14 md:w-auto md:h-auto bg-[var(--color-primary)] md:bg-transparent text-white md:text-[var(--color-primary)] rounded-xl md:rounded-none flex items-center justify-center shrink-0 shadow-lg md:shadow-none shadow-[var(--color-primary)]/20">
+                            <span
+                                class="material-symbols-rounded text-3xl md:text-[48px]">globe_asia</span>
+                        </div>
+                        <span
+                                class="material-symbols-rounded text-[var(--color-text-sub)] opacity-20 hidden md:block">arrow_outward</span>
+                    </div>
+
+                    <div class="flex-1 md:flex-none">
+                        <h3 class="font-bold text-base md:text-lg text-[var(--color-text-main)]">الموقع الشخصي</h3>
+                        <p
+                            class="text-[10px] md:text-xs text-[var(--color-text-sub)] mt-0.5 md:mt-1 leading-relaxed md:line-clamp-2">
+                            الموقع الشخصي للأستاذ يحتوي على مشاريعه البرمجية ومعلومات التواصل.</p>
+                    </div>
+
+                    <!-- Desktop Footer -->
+                    <div
+                        class="hidden md:flex mt-auto pt-2 border-t border-[var(--color-surface-border)] w-full items-center gap-2 text-xs text-[var(--color-text-sub)]">
+                        <span class="material-symbols-rounded text-[14px]">public</span>
+                        رابط خارجي
+                    </div>
+
+                    <!-- Mobile Arrow -->
+                    <span
+                        class="material-symbols-rounded text-[var(--color-text-sub)] opacity-30 md:hidden ml-auto">arrow_forward_ios</span>
+                </a>
+
+                <!-- Contact Card -->
+                <a href="mailto:hbouzourdaz@gmail.com"
+                    class="col-span-full full-width-mobile bg-[var(--color-surface-dim)] border border-dashed border-[var(--color-surface-border)] rounded-2xl p-4 flex items-center gap-4 group hover:border-[var(--color-primary)] transition-colors no-underline">
+                        <div
+                            class="w-10 h-10 md:w-12 md:h-12 bg-[var(--color-primary)]/10 dark:bg-[var(--color-primary)]/20 border border-[var(--color-primary)]/20 dark:border-[var(--color-primary)]/40 rounded-full flex items-center justify-center shadow-sm shrink-0">
+                            <span
+                                class="material-symbols-rounded text-[var(--color-primary)] text-xl md:text-2xl">alternate_email</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="text-[10px] md:text-[11px] text-[var(--color-text-sub)] font-bold uppercase tracking-wider mb-0.5">
+                                للتواصل</p>
+                            <span
+                                class="text-sm md:text-base font-bold text-[var(--color-text-main)] group-hover:text-[var(--color-primary)] transition-colors">hbouzourdaz@gmail.com</span>
+                        </div>
+                        <div
+                            class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[var(--color-primary)] text-[var(--color-on-primary)] flex items-center justify-center shadow-md shrink-0">
+                            <span class="material-symbols-rounded text-lg">send</span>
+                        </div>
+                </a>
+            </div>
+
+        </section>
+
+        <!-- FILE LIST SECTION -->
+        <div id="file-section" class="hidden flex flex-col gap-3">
+            <section id="file-view" class="file-list-container">
+                <!-- Search & Filters -->
+                <div id="filter-wrapper" class="p-4 border-b border-[var(--color-surface-border)] flex flex-col gap-4">
+                    <!-- Filter Chips -->
+                    <div class="flex gap-2 overflow-x-auto pb-1 no-scrollbar" id="filter-chips">
+                        <button class="filter-chip active whitespace-nowrap"
+                            data-filter="all">الكل</button>
+                        <button class="filter-chip whitespace-nowrap"
+                            data-filter="devoir">فروض</button>
+                        <button class="filter-chip whitespace-nowrap"
+                            data-filter="test">اختبارات</button>
+                        <button class="filter-chip whitespace-nowrap"
+                            data-filter="lesson">دروس</button>
+                        <button class="filter-chip whitespace-nowrap"
+                            data-filter="summary">ملخصات</button>
+                    </div>
+                </div>
+
+                <div class="file-list-header">
+                    <span>اسم الملف</span>
+                    <span class="hidden md:inline">تاريخ الاضافة</span>
+                    <span>الاجراءات</span>
+                </div>
+
+                <div id="file-list-body">
+                    <!-- Injected via JS -->
+                </div>
+
+                <div id="empty-state"
+                    class="hidden flex-col items-center justify-center py-16 text-[var(--color-text-sub)]">
+                    <span class="material-symbols-rounded text-6xl opacity-20 mb-4">folder_open</span>
+                    <p>لا توجد ملفات في هذا المجلد حالياً</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- RESULTS LINK -->
+        <a href="results" id="grades-view" class="hidden" style="margin: 0 1rem 1rem; display: none; background: var(--color-surface); border: 1px solid var(--color-surface-border); border-radius: 20px; padding: 1.25rem 1.5rem; box-shadow: var(--shadow-sm); text-decoration: none; color: var(--color-text-main); transition: all 0.2s;" onmouseover="this.style.borderColor='var(--color-primary)'" onmouseout="this.style.borderColor='var(--color-surface-border)'">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div style="width:40px; height:40px; border-radius: 50%; background: linear-gradient(135deg, #006064, #00838f); display: flex; align-items: center; justify-content: center; flex-shrink:0;">
+                    <span class="material-symbols-rounded" style="color:white; font-size:20px;">assignment_turned_in</span>
+                </div>
+                <div>
+                    <h3 style="font-weight:800; font-size: 1rem; color: var(--color-text-main); margin:0;">نتائجي</h3>
+                    <p style="font-size: 11px; color: var(--color-text-sub); margin: 2px 0 0;">استخراج كشف النقاط وعرض النتائج</p>
+                </div>
+                <span class="material-symbols-rounded" style="margin-right: auto; color: var(--color-text-sub); font-size: 20px;">arrow_forward_ios</span>
+            </div>
+        </a>
+
+        <!-- Footer -->
+        <footer class="mt-auto py-4 border-t border-[var(--color-surface-border)] text-center text-xs text-[var(--color-text-sub)]">
+            <p dir="ltr">&copy; 2026 Prof. Hakim Bouzourdaz. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <!-- Modals -->
+    <!-- Istighfar Modal -->
+    <div id="istighfar-modal" class="modal-overlay">
+        <div class="modal-card relative overflow-hidden">
+            <!-- Decorative Backgroud Elements -->
+            <div
+                class="absolute -top-10 -right-10 w-32 h-32 bg-[var(--color-primary)] opacity-10 rounded-full blur-2xl pointer-events-none">
+            </div>
+            <div
+                class="absolute -bottom-10 -left-10 w-24 h-24 bg-[var(--color-folder)] opacity-10 rounded-full blur-2xl pointer-events-none">
+            </div>
+
+            <div class="flex flex-col items-center relative z-10">
+                <div
+                    class="w-16 h-16 bg-[var(--color-primary-light)] bg-opacity-20 rounded-full flex items-center justify-center mb-4 text-[var(--color-primary)]">
+                    <span class="material-symbols-rounded text-3xl animate-pulse">downloading</span>
+                </div>
+
+                <h3 class="text-xl font-bold mb-1">جاري تحضير الملف...</h3>
+                <p class="text-sm text-[var(--color-text-sub)] mb-6 font-medium">"أستغفر الله العظيم واتوب اليه"</p>
+
+                <!-- Linear Progress Bar -->
+                <div
+                    class="w-full bg-[var(--color-surface-dim)] rounded-full h-2.5 mb-2 overflow-hidden border border-[var(--color-surface-border)]">
+                    <div id="progress-bar"
+                        class="bg-[var(--color-primary)] h-2.5 rounded-full transition-all duration-1000 ease-linear relative overflow-hidden"
+                        style="width: 0%">
+                        <div class="absolute inset-0 bg-white/20 animate-[shimmer_1.5s_infinite]"></div>
+                    </div>
+                </div>
+
+                <!-- Countdown / Status Row -->
+                <div id="countdown-container"
+                    class="flex justify-between w-full text-xs font-semibold text-[var(--color-text-sub)] mb-6 px-1">
+                    <span>يرجى الانتظار</span>
+                    <span id="countdown-text">2 ثواني</span>
+                </div>
+
+                <!-- Open Button Container -->
+                <div id="open-btn-container" class="hidden w-full mb-6 flex justify-center"></div>
+
+                <button onclick="closeIstighfarModal()"
+                    class="btn-action btn-secondary w-full justify-center group hover:border-red-200 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-900/20 dark:hover:text-red-300 dark:hover:border-red-800 transition-colors">
+                    <span
+                        class="material-symbols-rounded text-lg group-hover:rotate-90 transition-transform">close</span>
+                    <span>إلغاء التحميل</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unavailable Modal -->
+    <div id="unavailable-modal" class="modal-overlay">
+        <div class="modal-card">
+            <span class="material-symbols-rounded text-5xl text-[var(--color-folder)] mb-4">engineering</span>
+            <h3 class="text-xl font-bold mb-2">قريباً!</h3>
+            <p class="text-sm text-[var(--color-text-sub)] mb-6">هذا الملف قيد التحضير وسيتم نشره قريباً إن شاء الله.
+            </p>
+            <button onclick="closeModal()" class="btn-action btn-primary w-full justify-center">
+                حسناً
+            </button>
+        </div>
+    </div>
+
+    <!-- Generic Loading Modal -->
+    <div id="loading-modal" class="modal-overlay z-[60]">
+        <div
+            class="bg-[var(--color-surface)] p-6 rounded-[24px] shadow-lg flex flex-col items-center gap-4 border border-[var(--color-surface-border)]">
+            <div class="loader w-10 h-10 border-4 border-b-[var(--color-primary)]"></div>
+            <p class="text-sm font-semibold text-[var(--color-text-main)] animate-pulse">جاري التحميل...</p>
+        </div>
+    </div>
+
+    <!-- Empty Folder Toast -->
+    <div id="empty-toast" class="fixed bottom-20 left-1/2 -translate-x-1/2 z-[9999] bg-amber-500 text-white text-sm font-bold px-5 py-3 rounded-2xl shadow-lg flex items-center gap-3 opacity-0 pointer-events-none transition-opacity duration-200">
+        <span class="material-symbols-rounded text-white" style="font-size:20px;">block</span>
+        <span>لا توجد ملفات</span>
+    </div>
+
+    <!-- Document Viewer Modal -->
+    <div id="viewer-modal" class="modal-overlay z-50">
+        <div class="viewer-card">
+            <!-- Header -->
+            <div class="px-6 py-4 border-b border-[var(--color-surface-border)] flex items-center justify-between bg-[var(--color-surface-dim)]">
+                <div class="flex items-center gap-3 min-w-0 flex-1 mr-2">
+                    <span class="material-symbols-rounded text-[var(--color-primary)] text-2xl shrink-0">description</span>
+                    <h3 id="viewer-title" class="font-bold text-base md:text-lg text-[var(--color-text-main)] truncate">معاينة الملف</h3>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <!-- Open in New Tab Button -->
+                    <a id="viewer-external-link" href="#" target="_blank" class="px-3 py-1.5 rounded-xl border border-[var(--color-surface-border)] hover:bg-[var(--color-surface-border)] hover:text-[var(--color-primary)] text-[var(--color-text-sub)] transition-colors flex items-center gap-1.5 text-xs font-semibold" title="فتح في علامة تبويب جديدة">
+                        <span class="material-symbols-rounded text-lg">open_in_new</span>
+                        <span class="hidden sm:inline">عرض كامل</span>
+                    </a>
+                    <!-- Download Button -->
+                    <a id="viewer-download-link" href="#" target="_blank" class="px-3 py-1.5 rounded-xl border border-[var(--color-surface-border)] hover:bg-[var(--color-surface-border)] hover:text-[var(--color-primary)] text-[var(--color-text-sub)] transition-colors flex items-center gap-1.5 text-xs font-semibold" title="تحميل الملف">
+                        <span class="material-symbols-rounded text-lg">download</span>
+                        <span class="hidden sm:inline">تحميل</span>
+                    </a>
+                    <!-- Close Button -->
+                    <button onclick="closeViewerModal()" class="px-3 py-1.5 rounded-xl bg-red-50 hover:bg-red-100 dark:bg-red-950/20 dark:hover:bg-red-900/30 text-red-600 dark:text-red-300 transition-colors flex items-center gap-1.5 text-xs font-bold" title="إغلاق">
+                        <span class="material-symbols-rounded text-lg">close</span>
+                        <span class="hidden sm:inline">إغلاق</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Body / Content (Full-Screen canvas) -->
+            <div class="flex-1 bg-[var(--color-surface-dim)] p-0 relative flex items-center justify-center overflow-hidden">
+                <!-- Loader -->
+                <div id="viewer-loader" class="absolute flex flex-col items-center gap-3 z-10">
+                    <span class="loader"></span>
+                    <p class="text-sm font-semibold text-[var(--color-text-sub)] animate-pulse">جاري تحميل الملف...</p>
+                </div>
+                
+                <!-- Error State -->
+                <div id="viewer-error" class="hidden absolute flex flex-col items-center text-center px-4 max-w-sm z-10">
+                    <span class="material-symbols-rounded text-6xl text-red-500 mb-4">error</span>
+                    <h4 class="font-bold text-lg mb-2">فشل تحميل المعاينة</h4>
+                    <p class="text-sm text-[var(--color-text-sub)] mb-6">حدث خطأ أثناء تحميل الملف المعروض. يمكنك محاولة فتحه مباشرة في علامة تبويب جديدة أو تحميله.</p>
+                    <div class="flex gap-3 w-full">
+                        <a id="viewer-error-external" href="#" target="_blank" class="btn-action btn-primary flex-1">
+                            <span class="material-symbols-rounded text-lg">open_in_new</span>
+                            فتح مباشر
+                        </a>
+                        <a id="viewer-error-download" href="#" target="_blank" class="btn-action btn-secondary flex-1">
+                            <span class="material-symbols-rounded text-lg">download</span>
+                            تحميل
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Iframe (Full viewport render) -->
+                <iframe id="viewer-iframe" class="w-full h-full border-none bg-[var(--color-surface)] hidden" src="about:blank"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script>
+        // CONFIGURATION (fetched from JSONBin _publicConfig)
+        let JSONBIN_BIN_ID = '';
+        let JSONBIN_ACCESS_KEY = '';
+        let GITHUB_TOKEN = '';
+        let publicConfigLoaded = false;
+        const DEFAULT_BIN_ID = APP_CONFIG.DEFAULT_BIN_ID;
+
+        // DATA STORE (static fallback — overwritten by JSONBin on load)
+        let data = {
+            '1am': [
+                { id: 1001, type: 'folder', name: 'الفصل الأول', children: [
+                    { id: 10011, type: 'folder', name: 'الفروض', children: [] },
+                    { id: 10012, type: 'folder', name: 'الاختبارات', children: [] },
+                    { id: 10013, type: 'folder', name: 'الدروس', children: [] },
+                    { id: 10014, type: 'folder', name: 'الملخصات', children: [] }
+                ]},
+                { id: 1002, type: 'folder', name: 'الفصل الثاني', children: [
+                    { id: 10021, type: 'folder', name: 'الفروض', children: [] },
+                    { id: 10022, type: 'folder', name: 'الاختبارات', children: [] },
+                    { id: 10023, type: 'folder', name: 'الدروس', children: [] },
+                    { id: 10024, type: 'folder', name: 'الملخصات', children: [] }
+                ]},
+                { id: 1003, type: 'folder', name: 'الفصل الثالث', children: [
+                    { id: 10031, type: 'folder', name: 'الفروض', children: [] },
+                    { id: 10032, type: 'folder', name: 'الاختبارات', children: [] },
+                    { id: 10033, type: 'folder', name: 'الدروس', children: [] },
+                    { id: 10034, type: 'folder', name: 'الملخصات', children: [] }
+                ]}
+            ],
+            '2am': [
+                { id: 2001, type: 'folder', name: 'الفصل الأول', children: [
+                    { id: 20011, type: 'folder', name: 'الفروض', children: [] },
+                    { id: 20012, type: 'folder', name: 'الاختبارات', children: [] },
+                    { id: 20013, type: 'folder', name: 'الدروس', children: [] },
+                    { id: 20014, type: 'folder', name: 'الملخصات', children: [] }
+                ]},
+                { id: 2002, type: 'folder', name: 'الفصل الثاني', children: [
+                    { id: 20021, type: 'folder', name: 'الفروض', children: [] },
+                    { id: 20022, type: 'folder', name: 'الاختبارات', children: [] },
+                    { id: 20023, type: 'folder', name: 'الدروس', children: [] },
+                    { id: 20024, type: 'folder', name: 'الملخصات', children: [] }
+                ]},
+                { id: 2003, type: 'folder', name: 'الفصل الثالث', children: [
+                    { id: 20031, type: 'folder', name: 'الفروض', children: [] },
+                    { id: 20032, type: 'folder', name: 'الاختبارات', children: [] },
+                    { id: 20033, type: 'folder', name: 'الدروس', children: [] },
+                    { id: 20034, type: 'folder', name: 'الملخصات', children: [] }
+                ]}
+            ],
+            '3am': [
+                { id: 3001, type: 'folder', name: 'الفصل الأول', children: [
+                    { id: 30011, type: 'folder', name: 'الفروض', children: [] },
+                    { id: 30012, type: 'folder', name: 'الاختبارات', children: [] },
+                    { id: 30013, type: 'folder', name: 'الدروس', children: [] },
+                    { id: 30014, type: 'folder', name: 'الملخصات', children: [] }
+                ]},
+                { id: 3002, type: 'folder', name: 'الفصل الثاني', children: [
+                    { id: 30021, type: 'folder', name: 'الفروض', children: [] },
+                    { id: 30022, type: 'folder', name: 'الاختبارات', children: [] },
+                    { id: 30023, type: 'folder', name: 'الدروس', children: [] },
+                    { id: 30024, type: 'folder', name: 'الملخصات', children: [] }
+                ]},
+                { id: 3003, type: 'folder', name: 'الفصل الثالث', children: [
+                    { id: 30031, type: 'folder', name: 'الفروض', children: [] },
+                    { id: 30032, type: 'folder', name: 'الاختبارات', children: [] },
+                    { id: 30033, type: 'folder', name: 'الدروس', children: [] },
+                    { id: 30034, type: 'folder', name: 'الملخصات', children: [] }
+                ]}
+            ],
+            '4am': [
+                { id: 4001, type: 'folder', name: 'الفصل الأول', children: [
+                    { id: 40011, type: 'folder', name: 'الفروض', children: [] },
+                    { id: 40012, type: 'folder', name: 'الاختبارات', children: [] },
+                    { id: 40013, type: 'folder', name: 'الدروس', children: [] },
+                    { id: 40014, type: 'folder', name: 'الملخصات', children: [] }
+                ]},
+                { id: 4002, type: 'folder', name: 'الفصل الثاني', children: [
+                    { id: 40021, type: 'folder', name: 'الفروض', children: [] },
+                    { id: 40022, type: 'folder', name: 'الاختبارات', children: [] },
+                    { id: 40023, type: 'folder', name: 'الدروس', children: [] },
+                    { id: 40024, type: 'folder', name: 'الملخصات', children: [] }
+                ]},
+                { id: 4003, type: 'folder', name: 'الفصل الثالث', children: [
+                    { id: 40031, type: 'folder', name: 'الفروض', children: [] },
+                    { id: 40032, type: 'folder', name: 'الاختبارات', children: [] },
+                    { id: 40033, type: 'folder', name: 'الدروس', children: [] },
+                    { id: 40034, type: 'folder', name: 'الملخصات', children: [] }
+                ]}
+            ]
+        };
+
+        let levelNames = {
+            '1am': 'السنة 1 متوسط',
+            '2am': 'السنة 2 متوسط',
+            '3am': 'السنة 3 متوسط',
+            '4am': 'السنة 4 متوسط'
+        };
+
+        let levelSettings = {};
+
+        // DOM ELEMENTS
+        const folderView = document.getElementById('folder-view');
+        const fileView = document.getElementById('file-view');
+        const fileListBody = document.getElementById('file-list-body');
+        const emptyState = document.getElementById('empty-state');
+        const breadcrumbs = document.getElementById('breadcrumbs');
+        const preloader = document.getElementById('preloader');
+        
+        const fileSection = document.getElementById('file-section');
+
+        // STATE
+        let currentPath = []; // ['root'] or ['root', '2am']
+        let currentFilter = 'all';
+
+        // GitHub config (populated from cloud data)
+        let githubConfig = { repo: APP_CONFIG.GITHUB.REPO, branch: APP_CONFIG.GITHUB.BRANCH };
+
+        // Resolve file references: GitHub paths, Drive IDs/links, or full URLs
+        function resolveDocUrl(value, isDownload = false) {
+            if (!value || value === 'null' || value === '#') return '#';
+            
+            // 1. Already a full URL — use as-is
+            if (value.startsWith('http://') || value.startsWith('https://')) {
+                // Check if it's a Google Drive link and extract ID
+                const match = value.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+                if (match && match[1]) {
+                    const fileId = match[1];
+                    return isDownload 
+                        ? `https://drive.google.com/uc?export=download&id=${fileId}`
+                        : `https://drive.google.com/file/d/${fileId}/view?usp=sharing`;
+                }
+                const idMatch = value.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+                if (idMatch && idMatch[1]) {
+                    const fileId = idMatch[1];
+                    return isDownload 
+                        ? `https://drive.google.com/uc?export=download&id=${fileId}`
+                        : `https://drive.google.com/file/d/${fileId}/view?usp=sharing`;
+                }
+                return value;
+            }
+            
+            // 2. GitHub path (contains / like "archive/file.pdf")
+            if (value.includes('/') && githubConfig.repo) {
+                return isDownload
+                    ? `https://raw.githubusercontent.com/${githubConfig.repo}/${githubConfig.branch}/${value}`
+                    : `https://github.com/${githubConfig.repo}/blob/${githubConfig.branch}/${value}`;
+            }
+            
+            // 3. Google Drive file ID (25-45 alphanumeric chars)
+            if (/^[a-zA-Z0-9_-]{25,45}$/.test(value)) {
+                return isDownload 
+                    ? `https://drive.google.com/uc?export=download&id=${value}`
+                    : `https://drive.google.com/file/d/${value}/view?usp=sharing`;
+            }
+            
+            // 4. Simple filename — assume GitHub repo
+            if (githubConfig.repo && value.match(/\.\w+$/)) {
+                const path = `archive/${value}`;
+                return isDownload
+                    ? `https://raw.githubusercontent.com/${githubConfig.repo}/${githubConfig.branch}/${path}`
+                    : `https://github.com/${githubConfig.repo}/blob/${githubConfig.branch}/${path}`;
+            }
+            
+            return value;
+        }
+
+        // Dynamic Data Fetching (2-step: fetch config first, then data)
+        async function fetchDynamicData() {
+            const activeBinId = localStorage.getItem('jsonbin_bin_id') || localStorage.getItem('saved_bin_id') || DEFAULT_BIN_ID;
+            if (!activeBinId) {
+                console.log('No JSONBin Bin ID configured. Using local static fallback data.');
+                return;
+            }
+            JSONBIN_BIN_ID = activeBinId;
+
+            try {
+                // Step 1: Fetch _publicConfig to get API keys
+                const configResponse = await fetch(`https://api.jsonbin.io/v3/b/${activeBinId}/latest?meta=false`);
+                if (!configResponse.ok) throw new Error(`Config fetch failed: ${configResponse.status}`);
+                const configResult = await configResponse.json();
+                const configRecord = configResult.record || configResult;
+
+                if (configRecord._publicConfig) {
+                    JSONBIN_ACCESS_KEY = configRecord._publicConfig.jsonbinKey || '';
+                    GITHUB_TOKEN = configRecord._publicConfig.githubToken || '';
+                    publicConfigLoaded = true;
+                }
+
+                // Step 2: Fetch full data with proper auth
+                const headers = {};
+                if (JSONBIN_ACCESS_KEY) headers['X-Master-Key'] = JSONBIN_ACCESS_KEY;
+
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${activeBinId}/latest?meta=false`, { headers });
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+                const fetchedData = await response.json();
+                if (fetchedData && typeof fetchedData === 'object') {
+                    if (fetchedData._levelNames && typeof fetchedData._levelNames === 'object') {
+                        Object.assign(levelNames, fetchedData._levelNames);
+                        delete fetchedData._levelNames;
+                    }
+                    if (fetchedData._levelSettings && typeof fetchedData._levelSettings === 'object') {
+                        Object.assign(levelSettings, fetchedData._levelSettings);
+                        delete fetchedData._levelSettings;
+                    }
+                    if (fetchedData._githubInfo && typeof fetchedData._githubInfo === 'object') {
+                        githubConfig = { ...githubConfig, ...fetchedData._githubInfo };
+                        delete fetchedData._githubInfo;
+                    }
+                    delete fetchedData._config;
+                    delete fetchedData._publicConfig;
+                    
+                    data = fetchedData;
+                    
+                    Object.keys(data).forEach(key => {
+                        if (key.startsWith('_')) return;
+                        if (!levelNames[key]) {
+                            levelNames[key] = key.toUpperCase();
+                        }
+                    });
+                    
+                    console.log('Successfully loaded dynamic data from JSONBin:', Object.keys(data));
+                }
+            } catch (error) {
+                console.error('Failed to load dynamic data from JSONBin. Falling back to local static data.', error);
+            }
+        }
+
+        // POLLING: Real-time sync every 3 seconds
+        let lastDataHash = '';
+        let pollInterval = null;
+        let isPolling = false;
+
+        function getDataHash(obj) {
+            try { return JSON.stringify(obj); } catch(e) { return ''; }
+        }
+
+        async function pollForUpdates() {
+            if (!JSONBIN_BIN_ID || isPolling) return;
+            isPolling = true;
+            try {
+                const headers = {};
+                if (JSONBIN_ACCESS_KEY) headers['X-Master-Key'] = JSONBIN_ACCESS_KEY;
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest?meta=false`, { headers });
+                if (!response.ok) return;
+
+                const fetchedData = await response.json();
+                if (!fetchedData || typeof fetchedData !== 'object') return;
+
+                if (fetchedData._levelNames && typeof fetchedData._levelNames === 'object') {
+                    Object.assign(levelNames, fetchedData._levelNames);
+                    delete fetchedData._levelNames;
+                }
+                if (fetchedData._levelSettings && typeof fetchedData._levelSettings === 'object') {
+                    Object.assign(levelSettings, fetchedData._levelSettings);
+                    delete fetchedData._levelSettings;
+                }
+                if (fetchedData._githubInfo && typeof fetchedData._githubInfo === 'object') {
+                    githubConfig = { ...githubConfig, ...fetchedData._githubInfo };
+                    delete fetchedData._githubInfo;
+                }
+                delete fetchedData._config;
+                delete fetchedData._publicConfig;
+
+                const newHash = getDataHash(fetchedData);
+                if (lastDataHash && newHash !== lastDataHash) {
+                    data = fetchedData;
+                    Object.keys(data).forEach(key => {
+                        if (key.startsWith('_')) return;
+                        if (!levelNames[key]) levelNames[key] = key.toUpperCase();
+                    });
+                    const currentLevel = currentPath.length > 1 ? currentPath[1] : null;
+                    if (currentLevel && data[currentLevel]) {
+                        render();
+                    } else {
+                        renderFolders();
+                    }
+                    showSyncToast();
+                    console.log('Data auto-updated from cloud');
+                }
+                lastDataHash = newHash;
+            } catch (e) {
+                console.warn('Polling failed:', e);
+            } finally {
+                isPolling = false;
+            }
+        }
+
+        // Refetch immediately when user returns to tab
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden && JSONBIN_BIN_ID) {
+                pollForUpdates();
+            }
+        });
+
+        function showSyncToast() {
+            let toast = document.getElementById('sync-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'sync-toast';
+                toast.className = 'fixed top-4 left-1/2 -translate-x-1/2 z-[9999] bg-green-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg transition-opacity duration-200 opacity-0 pointer-events-none';
+                toast.innerHTML = '<span class="flex items-center gap-1"><span class="material-symbols-rounded text-sm">cloud_done</span>تم تحديث البيانات تلقائياً</span>';
+                document.body.appendChild(toast);
+            }
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+
+        // SORT HELPER
+        function getSortedLevelKeys() {
+            const rawKeys = Object.keys(data).filter(k => !k.startsWith('_') && k !== 'grades');
+            if (data._levelOrder && Array.isArray(data._levelOrder)) {
+                const existingOrder = data._levelOrder.filter(k => rawKeys.includes(k));
+                const missingKeys = rawKeys.filter(k => !existingOrder.includes(k));
+                return [...existingOrder, ...missingKeys];
+            }
+            return rawKeys;
+        }
+
+        // RECURSIVE VISIBLE FILES COUNTER
+        function countVisibleFilesRecursive(list) {
+            if (!Array.isArray(list)) return 0;
+            let fileCount = 0;
+            list.forEach(item => {
+                if (item.isHidden) return; // skip hidden items
+                if (item.type === 'folder') {
+                    fileCount += countVisibleFilesRecursive(item.children);
+                } else {
+                    fileCount++;
+                }
+            });
+            return fileCount;
+        }
+
+        // RENDER FOLDERS DYNAMICALLY
+        function renderFolders() {
+            const container = document.getElementById('dynamic-folders');
+            container.innerHTML = '';
+
+            const folderIcons = ['science', 'school', 'biotech', 'psychology', 'calculate', 'auto_stories', 'menu_book', 'labs'];
+            let iconIndex = 0;
+
+            const levelKeys = getSortedLevelKeys();
+            levelKeys.forEach(key => {
+                const list = data[key] || [];
+                const name = levelNames[key] || key.toUpperCase();
+                const fileCount = countVisibleFilesRecursive(list);
+                const icon = folderIcons[iconIndex % folderIcons.length];
+                iconIndex++;
+
+                const card = document.createElement('div');
+                card.className = 'folder-card';
+                card.onclick = () => openLevel(key);
+                card.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <span class="material-symbols-rounded folder-icon">folder</span>
+                        <span class="material-symbols-rounded text-[var(--color-text-sub)] opacity-20 transform rotate-45">Keep</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl">${name}</h3>
+                        <p class="text-sm text-[var(--color-text-sub)] mt-1">${fileCount} ملف${fileCount !== 1 ? 'ات' : ''}</p>
+                    </div>
+                    <div class="mt-auto pt-2 border-t border-[var(--color-surface-border)] flex items-center gap-2 text-sm text-[var(--color-text-sub)]">
+                        <span class="material-symbols-rounded text-[16px]">${icon}</span>
+                        فيزياء
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // INIT
+        window.addEventListener('load', async () => {
+            // Load dynamic data before hiding the preloader
+            await fetchDynamicData();
+
+            // Render folder cards dynamically from data
+            renderFolders();
+
+            setTimeout(() => {
+                preloader.classList.add('opacity-0', 'pointer-events-none');
+            }, 500);
+            renderBreadcrumbs();
+
+            // Restore Navigation State
+            const savedLevel = localStorage.getItem('currentLevel');
+            if (savedLevel && data[savedLevel]) {
+                currentPath = ['root', savedLevel];
+                render();
+            }
+
+
+
+            // Filter Chips Listeners
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.addEventListener('click', (e) => {
+                    // Update Active State
+                    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                    e.target.classList.add('active');
+
+                    currentFilter = e.target.getAttribute('data-filter');
+                    render();
+                });
+            });
+
+            // Start real-time polling
+            if (JSONBIN_BIN_ID) {
+                lastDataHash = getDataHash(data);
+                pollForUpdates();
+                pollInterval = setInterval(pollForUpdates, APP_CONFIG.SYNC.POLL_INTERVAL);
+            }
+        });
+
+        // Secret admin access: triple-click on logo
+        let logoClickCount = 0;
+        let logoClickTimer = null;
+        document.getElementById('secret-logo').addEventListener('click', () => {
+            logoClickCount++;
+            clearTimeout(logoClickTimer);
+            if (logoClickCount >= 3) {
+                logoClickCount = 0;
+                window.location.href = 'admin.html';
+            }
+            logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 500);
+        });
+
+        // Secret admin access: Ctrl+Shift+A
+        // Secret results access: Ctrl+Shift+R
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+                e.preventDefault();
+                window.location.href = 'admin.html';
+            }
+            if (e.ctrlKey && e.shiftKey && e.key === 'R') {
+                e.preventDefault();
+                window.location.href = 'results.html';
+            }
+        });
+
+        // ACTIONS
+        function resetFilter() {
+            currentFilter = 'all';
+            document.querySelectorAll('.filter-chip').forEach(c => {
+                if (c.getAttribute('data-filter') === 'all') {
+                    c.classList.add('active');
+                } else {
+                    c.classList.remove('active');
+                }
+            });
+        }
+
+        function triggerAnimation(element) {
+            // No animation - instant display
+        }
+
+        function openLevel(levelKey) {
+            currentPath = ['root', levelKey];
+            localStorage.setItem('currentLevel', levelKey);
+            resetFilter();
+            render();
+        }
+
+        function openFolder(folderId) {
+            currentPath.push(folderId);
+            resetFilter();
+            render();
+        }
+
+        function goHome() {
+            currentPath = ['root'];
+            localStorage.removeItem('currentLevel');
+            resetFilter();
+            render();
+        }
+
+        function showLoading(callback) {
+            if (callback) callback();
+        }
+
+        function getCurrentDirectoryContents() {
+            if (currentPath.length <= 1) return [];
+            const levelKey = currentPath[1];
+            let currentDir = data[levelKey] || [];
+            
+            for (let i = 2; i < currentPath.length; i++) {
+                const folderId = currentPath[i];
+                const folder = currentDir.find(item => item.type === 'folder' && String(item.id) === String(folderId));
+                if (folder && Array.isArray(folder.children)) {
+                    currentDir = folder.children;
+                } else {
+                    break;
+                }
+            }
+            return currentDir;
+        }
+
+        function getCurrentFolder() {
+            if (currentPath.length <= 1) return null;
+            const levelKey = currentPath[1];
+            let currentDir = data[levelKey] || [];
+            let parent = null;
+            for (let i = 2; i < currentPath.length; i++) {
+                const folderId = currentPath[i];
+                parent = currentDir.find(item => item.type === 'folder' && String(item.id) === String(folderId));
+                if (parent && Array.isArray(parent.children)) {
+                    currentDir = parent.children;
+                } else {
+                    break;
+                }
+            }
+            return parent;
+        }
+
+        // RENDER LOGIC
+        function render() {
+            renderBreadcrumbs();
+
+            if (currentPath.length === 1) {
+                // Show Root Level Folders
+                renderFolders();
+                folderView.classList.remove('hidden');
+                fileSection.classList.add('hidden');
+                triggerAnimation(folderView);
+            } else {
+                folderView.classList.add('hidden');
+                
+                const contents = getCurrentDirectoryContents().filter(item => !item.isHidden);
+                const subfolders = contents.filter(item => item.type === 'folder');
+                let files = contents.filter(item => item.type !== 'folder');
+
+                // Helper to get all files recursively
+                const getAllFilesRecursive = (list) => {
+                    let result = [];
+                    list.forEach(item => {
+                        if (item.isHidden) return;
+                        if (item.type === 'folder') {
+                            if (Array.isArray(item.children)) {
+                                result = result.concat(getAllFilesRecursive(item.children));
+                            }
+                        } else {
+                            result.push(item);
+                        }
+                    });
+                    return result;
+                };
+
+                // FILTERING LOGIC
+                if (currentFilter !== 'all') {
+                    // When filtering, search recursively in all subfolders so files don't disappear
+                    const allFiles = getAllFilesRecursive(getCurrentDirectoryContents());
+                    files = allFiles.filter(file => {
+                        if (file.type === currentFilter) return true;
+                        // Fallback matching for old format
+                        if (currentFilter === 'devoir' && file.type === 'exam' && file.title.includes('فرض')) return true;
+                        if (currentFilter === 'test' && file.type === 'exam' && !file.title.includes('فرض')) return true;
+                        if (currentFilter === 'summary' && file.type === 'summary') return true;
+                        return false;
+                    });
+                }
+
+                // SORTING LOGIC: "New" items (manually flagged) at the top
+                files.sort((a, b) => {
+                    const isANew = !!a.isNew;
+                    const isBNew = !!b.isNew;
+                    if (isANew && !isBNew) return -1;
+                    if (!isANew && isBNew) return 1;
+                    return 0;
+                });
+
+                fileListBody.innerHTML = '';
+
+                const filterWrapper = document.getElementById('filter-wrapper');
+                const listHeader = document.querySelector('.file-list-header');
+                const currentFolder = getCurrentFolder();
+                const levelKey = currentPath.length > 1 ? currentPath[1] : null;
+                const shouldHideFilters = (currentFolder && currentFolder.hideFilters) || (levelKey && levelSettings[levelKey] && levelSettings[levelKey].hideFilters);
+
+                if (shouldHideFilters) {
+                    if (filterWrapper) filterWrapper.classList.add('hidden');
+                } else {
+                    if (filterWrapper) filterWrapper.classList.remove('hidden');
+                }
+
+                const foldersToRender = currentFilter === 'all' ? subfolders : [];
+
+                if (foldersToRender.length === 0 && files.length === 0) {
+                    if (contents.length === 0) {
+                        // Completely empty folder
+                        fileSection.classList.remove('hidden');
+                        fileView.style.display = 'block';
+                        triggerAnimation(fileView);
+                        if (filterWrapper) filterWrapper.classList.add('hidden');
+                        if (listHeader) listHeader.classList.add('hidden');
+                        emptyState.querySelector('p').innerText = 'لا توجد ملفات في هذا المجلد حالياً';
+                        emptyState.classList.remove('hidden');
+                        emptyState.classList.add('flex');
+                        if (currentFilter === 'all') {
+                            showEmptyToast();
+                        }
+                    } else {
+                        // Directory has contents, but filter yielded no results, or it's subfolder-only
+                        fileSection.classList.remove('hidden');
+                        fileView.style.display = 'block';
+                        triggerAnimation(fileView);
+                        if (filterWrapper && !shouldHideFilters) filterWrapper.classList.remove('hidden');
+                        if (listHeader) listHeader.classList.add('hidden');
+                        emptyState.querySelector('p').innerText = 'لا توجد ملفات تطابق هذا التصنيف';
+                        emptyState.classList.remove('hidden');
+                        emptyState.classList.add('flex');
+                    }
+                } else {
+                    fileSection.classList.remove('hidden');
+                    fileView.style.display = 'block';
+                    triggerAnimation(fileView);
+                    if (filterWrapper && !shouldHideFilters) filterWrapper.classList.remove('hidden');
+                    if (listHeader) listHeader.classList.remove('hidden');
+                    emptyState.classList.add('hidden');
+                    emptyState.classList.remove('flex');
+
+                    // 1. Render Folders (sorted first)
+                    foldersToRender.forEach(sub => {
+                        const fileCount = Array.isArray(sub.children) ? sub.children.length : 0;
+                        const row = document.createElement('div');
+                        row.className = 'file-row cursor-pointer hover:bg-[var(--color-surface-dim)]';
+                        row.onclick = () => openFolder(sub.id);
+                        row.innerHTML = `
+                            <div class="flex items-center justify-center">
+                                <span class="material-symbols-rounded text-amber-500 text-2xl" style="font-variation-settings: 'FILL' 1;">folder</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="font-bold text-sm text-[var(--color-text-main)] flex items-center">
+                                    ${sub.title}
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-amber-100 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-200/50 dark:border-amber-900/50 mr-2">مجلد فرعي</span>
+                                </span>
+                                <div class="flex items-center gap-3 mt-1 text-[var(--color-text-sub)]">
+                                    <span class="text-[10px]">${fileCount} ملف${fileCount !== 1 ? 'ات' : ''}</span>
+                                </div>
+                            </div>
+                            <div class="hidden md:block text-sm text-[var(--color-text-sub)]">
+                                -
+                            </div>
+                            <div class="file-actions">
+                                <button onclick="event.stopPropagation(); openFolder('${sub.id}')" 
+                                   class="btn-action btn-secondary flex-1 md:flex-none">
+                                   <span class="material-symbols-rounded text-[18px]">folder_open</span>
+                                   <span class="md:hidden lg:inline">فتح المجلد</span>
+                                </button>
+                            </div>
+                        `;
+                        fileListBody.appendChild(row);
+                    });
+
+                    // 2. Render Files
+                    files.forEach(file => {
+                        const row = document.createElement('div');
+                        row.className = 'file-row';
+
+                        if (file.isNew) {
+                            row.classList.add('glowing-border');
+                        }
+
+                        let iconName = 'picture_as_pdf';
+
+                        // Tag Logic
+                        let tagHTML = '';
+                        const typeVal = file.type || '';
+                        if (typeVal === 'devoir' || (typeVal === 'exam' && file.title.includes('فرض'))) {
+                            tagHTML = `<span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200 mr-2">فرض</span>`;
+                        } else if (typeVal === 'test' || (typeVal === 'exam' && !file.title.includes('فرض'))) {
+                            tagHTML = `<span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold bg-rose-100 text-rose-800 border border-rose-200 mr-2">اختبار</span>`;
+                        } else if (typeVal === 'lesson') {
+                            tagHTML = `<span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200 mr-2">درس</span>`;
+                        } else if (typeVal === 'summary') {
+                            tagHTML = `<span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold bg-indigo-100 text-indigo-800 border border-indigo-200 mr-2">ملخص</span>`;
+                        }
+
+                        if (file.isNew) {
+                            tagHTML += `<span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200 mr-2">جديد</span>`;
+                        }
+
+                        const dateObj = new Date(file.date);
+                        const dateStr = dateObj.toLocaleDateString('ar-DZ', { year: 'numeric', month: 'short', day: 'numeric' });
+                        const downloadCount = Math.floor(Math.random() * (500 - 50 + 1)) + 50;
+
+                        row.innerHTML = `
+                            <div class="flex items-center justify-center">
+                                <span class="material-symbols-rounded file-icon text-2xl">${iconName}</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="font-bold text-base text-[var(--color-text-main)] flex items-center">
+                                    ${file.title}
+                                    ${tagHTML}
+                                </span>
+                                <div class="flex items-center gap-3 mt-1 text-[var(--color-text-sub)]">
+                                    <span class="text-xs md:hidden">${dateStr}</span>
+                                    <span class="text-xs flex items-center gap-1 bg-[var(--color-surface-dim)] px-1.5 py-0.5 rounded border border-[var(--color-surface-border)]">
+                                        <span class="material-symbols-rounded text-[14px]">download</span>
+                                        ${downloadCount}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="hidden md:block text-sm text-[var(--color-text-sub)]">
+                                ${dateStr}
+                            </div>
+                            <div class="file-actions">
+                                <a href="${file.assignment || '#'}" onclick="handleLink(event, '${file.assignment}')" 
+                                   class="btn-action btn-secondary flex-1 md:flex-none">
+                                   <span class="material-symbols-rounded text-[18px]">visibility</span>
+                                   <span class="md:hidden lg:inline">الموضوع</span>
+                                </a>
+                                ${file.solution && file.solution !== '#' ? `
+                                <a href="${file.solution}" onclick="handleLink(event, '${file.solution}')" 
+                                   class="btn-action btn-primary flex-1 md:flex-none">
+                                   <span class="material-symbols-rounded text-[18px]">check_circle</span>
+                                   <span class="md:hidden lg:inline">التصحيح</span>
+                                </a>
+                                ` : ''}
+                            </div>
+                        `;
+                        fileListBody.appendChild(row);
+                    });
+                }
+            }
+        }
+
+        function renderBreadcrumbs() {
+            breadcrumbs.innerHTML = '';
+
+            // Home
+            const homeBtn = document.createElement('div');
+            homeBtn.className = `breadcrumb-item ${currentPath.length === 1 ? 'active' : ''}`;
+            homeBtn.innerHTML = '<span class="material-symbols-rounded text-[20px]">account_balance</span> الرئيسية';
+            homeBtn.onclick = goHome;
+            breadcrumbs.appendChild(homeBtn);
+
+            // Levels and nested subfolders
+            if (currentPath.length > 1) {
+                let currentDir = data;
+                for (let i = 1; i < currentPath.length; i++) {
+                    // Divider
+                    const div = document.createElement('span');
+                    div.className = 'breadcrumb-divider material-symbols-rounded';
+                    div.innerText = 'chevron_left';
+                    breadcrumbs.appendChild(div);
+
+                    const pathSegment = currentPath[i];
+                    const item = document.createElement('div');
+                    const isLast = i === currentPath.length - 1;
+                    item.className = `breadcrumb-item ${isLast ? 'active' : ''}`;
+
+                    if (i === 1) {
+                        // It's the level (e.g. 2am)
+                        item.innerHTML = `<span class="material-symbols-rounded text-[20px]">school</span> ${levelNames[pathSegment] || pathSegment}`;
+                        item.onclick = () => {
+                            currentPath = currentPath.slice(0, 2);
+                            localStorage.setItem('currentLevel', pathSegment);
+                            resetFilter();
+                            render();
+                        };
+                        currentDir = data[pathSegment] || [];
+                    } else {
+                        // It's a subfolder
+                        const folder = currentDir.find(item => item.type === 'folder' && String(item.id) === String(pathSegment));
+                        item.innerHTML = `<span class="material-symbols-rounded text-[20px]">folder</span> ${folder ? folder.title : '...'}`;
+                        const targetIndex = i;
+                        item.onclick = () => {
+                            currentPath = currentPath.slice(0, targetIndex + 1);
+                            resetFilter();
+                            render();
+                        };
+                        if (folder && Array.isArray(folder.children)) {
+                            currentDir = folder.children;
+                        }
+                    }
+                    breadcrumbs.appendChild(item);
+                }
+            }
+        }
+
+        // TOOLBAR / THEME
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            const icon = document.getElementById('theme-icon');
+            const isDark = document.body.classList.contains('dark');
+            icon.innerText = isDark ? 'light_mode' : 'dark_mode';
+
+            // Save to LocalStorage
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Init Theme from LocalStorage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.body.classList.add('dark');
+            const icon = document.getElementById('theme-icon');
+            if (icon) icon.innerText = 'light_mode';
+        } else {
+            document.body.classList.remove('dark');
+            const icon = document.getElementById('theme-icon');
+            if (icon) icon.innerText = 'dark_mode';
+        }
+
+        // MODAL LOGIC
+        let timerInterval, redirectTimeout;
+
+        function handleLink(e, url) {
+            e.preventDefault();
+            if (!url || url === 'null' || url === '#') {
+                toggleModal('unavailable-modal', true);
+            } else {
+                startIstighfar(url);
+            }
+        }
+
+        function toggleModal(id, show) {
+            const modal = document.getElementById(id);
+            if (show) {
+                modal.classList.add('modal-open');
+            } else {
+                modal.classList.remove('modal-open');
+            }
+        }
+
+        function closeModal() {
+            toggleModal('unavailable-modal', false);
+        }
+
+        function showEmptyToast() {
+            const toast = document.getElementById('empty-toast');
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none');
+                toast.classList.remove('opacity-100');
+            }, 2500);
+        }
+
+        function startIstighfar(url) {
+            toggleModal('istighfar-modal', true);
+
+            const countdownContainer = document.getElementById('countdown-container');
+            const openBtnContainer = document.getElementById('open-btn-container');
+            const countdownText = document.getElementById('countdown-text');
+            const progressBar = document.getElementById('progress-bar');
+            let timeLeft = 2;
+
+            // Reset UI State
+            countdownContainer.classList.remove('hidden');
+            countdownContainer.classList.add('flex');
+            openBtnContainer.classList.add('hidden');
+            openBtnContainer.innerHTML = ''; // Clear previous button
+
+            progressBar.parentElement.style.display = 'block';
+            progressBar.style.transition = 'none';
+            progressBar.style.width = '0%';
+            countdownText.innerText = timeLeft + ' ثواني';
+
+            // Trigger animation
+            setTimeout(() => {
+                progressBar.style.transition = 'width 2s linear';
+                progressBar.style.width = '100%';
+            }, 50);
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                if (timeLeft > 0) {
+                    countdownText.innerText = timeLeft + ' ثواني';
+                } else {
+                    clearInterval(timerInterval);
+
+                    // Switch UI to Open Button
+                    progressBar.parentElement.style.display = 'none';
+                    countdownContainer.classList.add('hidden');
+                    countdownContainer.classList.remove('flex');
+
+                    const downloadUrl = resolveDocUrl(url, true);
+                    const escapedUrl = url.replace(/'/g, "\\'");
+                    openBtnContainer.classList.remove('hidden');
+                    openBtnContainer.innerHTML = `
+                        <div class="flex gap-3 w-full">
+                            <button onclick="closeIstighfarModal(); openViewer('${escapedUrl}')" 
+                               class="btn-action btn-primary py-4 px-2 text-sm md:text-base font-bold rounded-2xl shadow-lg shadow-[var(--color-primary)]/20 transition-colors flex-1">
+                                <span class="material-symbols-rounded">visibility</span>
+                                عرض
+                            </button>
+                            <a href="${downloadUrl}" target="_blank" onclick="closeIstighfarModal()" 
+                               class="btn-action btn-secondary py-4 px-2 text-sm md:text-base font-bold rounded-2xl border-2 border-[var(--color-primary)] text-[var(--color-primary)] transition-colors flex-1">
+                                <span class="material-symbols-rounded">download</span>
+                                تحميل
+                            </a>
+                        </div>
+                    `;
+                }
+            }, 1000);
+        }
+
+        function closeIstighfarModal() {
+            toggleModal('istighfar-modal', false);
+            clearInterval(timerInterval);
+
+            // Reset for next time
+            setTimeout(() => {
+                const progressBar = document.getElementById('progress-bar');
+                if (progressBar) progressBar.style.width = '0%';
+            }, 300);
+        }
+
+        let activeBlobUrl = null;
+
+        async function openViewer(url) {
+            const viewerModal = document.getElementById('viewer-modal');
+            const iframe = document.getElementById('viewer-iframe');
+            const loader = document.getElementById('viewer-loader');
+            const errorState = document.getElementById('viewer-error');
+            const viewerTitle = document.getElementById('viewer-title');
+            
+            // Clean up any old Blob URL to free memory
+            if (activeBlobUrl) {
+                URL.revokeObjectURL(activeBlobUrl);
+                activeBlobUrl = null;
+            }
+            
+            // Reset modal state
+            iframe.classList.add('hidden');
+            iframe.src = 'about:blank';
+            loader.classList.remove('hidden');
+            errorState.classList.add('hidden');
+            
+            // Try to extract document title or use filename
+            let title = "معاينة الملف";
+            if (url) {
+                const parts = url.split('/');
+                const filename = parts[parts.length - 1];
+                if (filename && filename.includes('.')) {
+                    title = filename;
+                }
+            }
+            viewerTitle.innerText = title;
+            
+            // Set up download/external buttons inside modal
+            const viewUrl = resolveDocUrl(url, false);
+            const downloadUrl = resolveDocUrl(url, true);
+            
+            document.getElementById('viewer-external-link').href = viewUrl;
+            document.getElementById('viewer-download-link').href = downloadUrl;
+            document.getElementById('viewer-error-external').href = viewUrl;
+            document.getElementById('viewer-error-download').href = downloadUrl;
+            
+            // Open modal
+            toggleModal('viewer-modal', true);
+            
+            try {
+                let resolvedUrl = '';
+                
+                // 1. Google Drive PDF preview (runs in iframe directly and scrolls perfectly on all platforms)
+                let fileId = null;
+                if (url.startsWith('http://') || url.startsWith('https://')) {
+                    const match = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+                    if (match && match[1]) fileId = match[1];
+                    const idMatch = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+                    if (idMatch && idMatch[1]) fileId = idMatch[1];
+                } else if (/^[a-zA-Z0-9_-]{25,45}$/.test(url)) {
+                    fileId = url;
+                }
+                
+                if (fileId) {
+                    resolvedUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+                    iframe.src = resolvedUrl;
+                    
+                    iframe.onload = () => {
+                        loader.classList.add('hidden');
+                        iframe.classList.remove('hidden');
+                    };
+                } else {
+                    // 2. Local or GitHub file
+                    const rawUrl = resolveDocUrl(url, true);
+                    const isPdf = rawUrl.toLowerCase().endsWith('.pdf');
+                    
+                    // Detect if mobile device (iOS/Android)
+                    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                    // Detect if public production environment (not localhost or file://)
+                    const isPublicProd = window.location.hostname !== 'localhost' && 
+                                         window.location.hostname !== '127.0.0.1' && 
+                                         window.location.protocol !== 'file:';
+                    
+                    if (isPdf && isMobile && isPublicProd) {
+                        // On mobile, native iframes only show page 1 of PDFs due to iOS Safari limits.
+                        // We use Mozilla's PDF.js viewer instead of Google Docs Viewer to avoid "No preview available" errors.
+                        let absolutePdfUrl = rawUrl;
+                        if (!rawUrl.startsWith('http://') && !rawUrl.startsWith('https://')) {
+                            absolutePdfUrl = new URL(rawUrl, window.location.href).href;
+                        }
+                        iframe.src = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(absolutePdfUrl)}`;
+                        
+                        iframe.onload = () => {
+                            loader.classList.add('hidden');
+                            iframe.classList.remove('hidden');
+                        };
+                    } else if (rawUrl.startsWith('http://') || rawUrl.startsWith('https://')) {
+                        // Desktop/Local fallback: Fetch as blob to display inside built-in PDF viewer
+                        try {
+                            const response = await fetch(rawUrl);
+                            if (!response.ok) throw new Error("Could not fetch file");
+                            const blob = await response.blob();
+                            
+                            // Force correct mime type for PDFs or images
+                            let mimeType = blob.type;
+                            if (isPdf) {
+                                mimeType = 'application/pdf';
+                            } else if (rawUrl.toLowerCase().endsWith('.png')) {
+                                mimeType = 'image/png';
+                            } else if (rawUrl.toLowerCase().endsWith('.jpg') || rawUrl.toLowerCase().endsWith('.jpeg')) {
+                                mimeType = 'image/jpeg';
+                            }
+                            
+                            const fileBlob = new Blob([blob], { type: mimeType });
+                            activeBlobUrl = URL.createObjectURL(fileBlob);
+                            iframe.src = activeBlobUrl;
+                        } catch (fetchErr) {
+                            console.warn("Fetch failed, using PDF.js / raw fallback", fetchErr);
+                            if (isPdf) {
+                                iframe.src = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(rawUrl)}`;
+                            } else {
+                                iframe.src = rawUrl;
+                            }
+                        }
+                        
+                        iframe.onload = () => {
+                            loader.classList.add('hidden');
+                            iframe.classList.remove('hidden');
+                        };
+                    } else {
+                        // Local fallback for local offline testing (direct iframe src loading)
+                        iframe.src = rawUrl;
+                        iframe.onload = () => {
+                            loader.classList.add('hidden');
+                            iframe.classList.remove('hidden');
+                        };
+                    }
+                }
+            } catch (error) {
+                console.error("Error displaying PDF in iframe:", error);
+                loader.classList.add('hidden');
+                errorState.classList.remove('hidden');
+            }
+        }
+        
+        function closeViewerModal() {
+            toggleModal('viewer-modal', false);
+            const iframe = document.getElementById('viewer-iframe');
+            if (iframe) iframe.src = 'about:blank';
+            
+            if (activeBlobUrl) {
+                URL.revokeObjectURL(activeBlobUrl);
+                activeBlobUrl = null;
+            }
+        }
+
+    </script>
+</body>
+
+
+</html>
+
+
+
+

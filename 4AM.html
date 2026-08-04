@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إختبار الفصل الثاني في الإعلام الآلي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f3f4f6;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        /* إعدادات ورقة A4 الرسمية */
+        .a4-page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20mm auto;
+            background-color: white;
+            padding: 12mm 15mm;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            position: relative;
+            border: 1px solid #d1d5db;
+        }
+
+        /* الإطار الخارجي المميز */
+        .page-border {
+            position: absolute;
+            top: 8mm;
+            bottom: 8mm;
+            left: 8mm;
+            right: 8mm;
+            border: 2px solid #374151;
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .page-content {
+            position: relative;
+            z-index: 20;
+            padding: 2mm;
+        }
+
+        /* خطوط منقطة قابلة للتمدد */
+        .dot-leader {
+            flex-grow: 1;
+            border-bottom: 2px dotted #6b7280;
+            margin: 0 10px;
+            position: relative;
+            top: -5px;
+        }
+
+        /* تنسيق الأقسام */
+        .section-title {
+            position: relative;
+            padding-right: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 10%;
+            height: 80%;
+            width: 5px;
+            background-color: #1f2937;
+            border-radius: 4px;
+        }
+
+        /* إعدادات الطباعة */
+        @media print {
+            body {
+                background-color: white;
+                margin: 0;
+            }
+
+            .a4-page {
+                margin: 0;
+                padding: 12mm 15mm;
+                box-shadow: none;
+                border: none;
+                width: 210mm;
+                min-height: 297mm;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-gray-900 text-base md:text-lg leading-relaxed font-medium">
+
+    <!-- ========================================== -->
+    <!-- ورقة الإختبار (الصفحة الأولى - شاملة للوضعيتين) -->
+    <!-- ========================================== -->
+    <div class="a4-page">
+        <div class="page-border"></div>
+
+        <div class="page-content">
+            <!-- الترويسة الأكاديمية الرسمية -->
+            <div class="flex justify-between items-center border-b-4 border-double border-gray-800 pb-2 mb-4">
+                <div class="text-right font-bold space-y-1 text-sm">
+                    <p class="text-gray-700">الجمهورية الجزائرية الديمقراطية الشعبية</p>
+                    <p>وزارة التربية الوطنية</p>
+                    <p>متوسطة: إسغيد علي - بني جماتي -</p>
+                </div>
+
+                <div class="text-center font-extrabold">
+                    <h1 class="text-xl mb-1 text-gray-900 tracking-wide">إختبار الفصل الثاني</h1>
+                    <div class="inline-block bg-gray-800 text-white px-4 py-1 rounded-full text-base mt-1">
+                        مادة الإعلام الآلي
+                    </div>
+                </div>
+
+                <div class="text-left font-bold space-y-1 text-sm">
+                    <p>السنة الدراسية: 2025 / 2026</p>
+                    <p>المستوى: 4 متوسط</p>
+                    <p>المدة: 45 دقيقة</p>
+                </div>
+            </div>
+
+            <!-- إطار معلومات التلميذ -->
+            <div
+                class="flex items-center justify-between bg-gray-50 border-2 border-gray-800 rounded-lg p-3 mb-5 shadow-sm">
+                <div class="flex-grow flex items-center mr-2">
+                    <span class="font-bold text-gray-800 whitespace-nowrap">الاسم واللقب:</span>
+                    <span class="dot-leader"></span>
+                </div>
+                <div class="w-1/4 flex items-center mr-4">
+                    <span class="font-bold text-gray-800 whitespace-nowrap">القسم:</span>
+                    <span class="dot-leader"></span>
+                </div>
+
+                <!-- مربع النقطة -->
+                <div class="mr-4 pr-4 border-r-2 border-gray-300 flex items-center">
+                    <span class="font-bold text-gray-800 text-lg">العلامة:</span>
+                    <span class="dot-leader w-16 ml-2"></span>
+                </div>
+            </div>
+
+            <!-- الوضعية الأولى -->
+            <div class="mb-5">
+                <div class="flex justify-between items-end border-b-2 border-gray-800 pb-1 mb-3">
+                    <h2 class="text-lg font-bold section-title text-gray-900">الوضعية الأولى:</h2>
+                    <span class="font-bold text-gray-600 bg-gray-200 px-3 py-1 rounded-t-lg text-sm">(10 نقاط)</span>
+                </div>
+
+                <div class="space-y-4 pr-2">
+                    <!-- السؤال 1 -->
+                    <div class="bg-white">
+                        <p class="font-bold mb-2 text-gray-800">1. أكمل الفراغات التالية بما يناسبها حسب ما درست: <span
+                                class="text-gray-500 font-normal text-sm ml-2">(4 نقاط)</span></p>
+                        <ul class="list-disc list-inside space-y-3 pr-4 text-gray-800">
+                            <li class="flex items-center">
+                                <span class="font-bold whitespace-nowrap ml-2">المصنف (Classeur):</span> هو عنصر يحتوي
+                                على مجموعة من
+                                <span class="dot-leader"></span> .
+                            </li>
+                            <li class="flex items-center">
+                                <span class="font-bold whitespace-nowrap ml-2">ورقة العمل:</span> هي صفحة تحتوي على
+                                جدول، أعمدته معنونة بـ
+                                <span class="dot-leader max-w-xs"></span> وصفوفه معنونة بـ <span
+                                    class="dot-leader max-w-xs"></span> .
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- السؤال 2 -->
+                    <div>
+                        <p class="font-bold mb-2 text-gray-800">2. في برنامج المجدول، نجد خلية تحمل المرجع (B5). ماذا
+                            يعني هذا الرمز؟ <span class="text-gray-500 font-normal text-sm ml-2">(3 نقاط)</span></p>
+                        <div class="pr-4 flex items-center bg-gray-50 p-2 rounded-md border border-gray-200">
+                            <span class="font-bold text-gray-700 ml-2">الإجابة:</span>
+                            <span class="dot-leader mt-2"></span>
+                        </div>
+                    </div>
+
+                    <!-- السؤال 3 -->
+                    <div>
+                        <p class="font-bold mb-2 text-gray-800">3. أجب بـ "صحيح" أو "خطأ" مع تصحيح الخطأ إن وجد: <span
+                                class="text-gray-500 font-normal text-sm ml-2">(3 نقاط)</span></p>
+                        <div class="space-y-3 pr-4">
+                            <!-- أ -->
+                            <div class="border border-gray-200 p-2 rounded-lg bg-gray-50/50">
+                                <div class="flex justify-between items-start mb-2">
+                                    <p class="font-medium">أ) يمكننا حذف جميع أوراق العمل من المصنف حتى يصبح فارغاً
+                                        تماماً (عدده صفر).</p>
+                                    <div class="flex items-center mr-2">
+                                        <span class="ml-2 text-sm text-gray-500">الإجابة:</span>
+                                        <div class="border-2 border-gray-400 border-dashed w-12 h-6 rounded bg-white">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center pr-2 mt-1">
+                                    <span class="font-bold text-gray-600 ml-2 text-sm">التصحيح:</span>
+                                    <span class="dot-leader"></span>
+                                </div>
+                            </div>
+
+                            <!-- ب -->
+                            <div class="border border-gray-200 p-2 rounded-lg bg-gray-50/50">
+                                <div class="flex justify-between items-start mb-2">
+                                    <p class="font-medium">ب) لتنسيق محتوى الخلية (تغيير الخط، اللون، المحاذاة) نستخدم
+                                        نفس الطريقة المعتمدة في برنامج Word.</p>
+                                    <div class="flex items-center mr-2">
+                                        <span class="ml-2 text-sm text-gray-500">الإجابة:</span>
+                                        <div class="border-2 border-gray-400 border-dashed w-12 h-6 rounded bg-white">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center pr-2 mt-1">
+                                    <span class="font-bold text-gray-600 ml-2 text-sm">التصحيح:</span>
+                                    <span class="dot-leader"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- تذييل الصفحة -->
+        <div
+            class="absolute bottom-3 left-0 w-full text-center text-xs text-gray-500 font-bold uppercase tracking-wider">
+            ── الصفحة 1 / 2 ──
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- ورقة الإختبار (الصفحة الثانية) -->
+    <!-- ========================================== -->
+    <div class="a4-page">
+        <div class="page-border"></div>
+
+        <div class="page-content">
+
+            <!-- الوضعية الثانية -->
+            <div class="pt-4">
+                <div class="flex justify-between items-end border-b-2 border-gray-800 pb-1 mb-3">
+                    <h2 class="text-lg font-bold section-title text-gray-900">الوضعية الثانية:</h2>
+                    <span class="font-bold text-gray-600 bg-gray-200 px-3 py-1 rounded-t-lg text-sm">(10 نقاط)</span>
+                </div>
+
+                <div class="bg-blue-50 border-r-4 border-blue-500 p-2 mb-4 rounded-l-lg shadow-sm">
+                    <p class="text-gray-800 font-medium">أراد زميلك "أحمد" إنجاز قائمة بأسماء تلاميذ القسم باستخدام
+                        برنامج المجدول (Excel)، لكنه واجه بعض الصعوبات وطلب مساعدتك.</p>
+                </div>
+
+                <div class="space-y-4 pr-2">
+                    <!-- السؤال 1 -->
+                    <div>
+                        <p class="font-bold mb-1">1. بعد فتح البرنامج، وجد أحمد ورقة العمل باسمها الافتراضي (Feuil1)،
+                            وأراد تغيير اسمها إلى "قائمة القسم".</p>
+                        <p
+                            class="mb-2 text-gray-700 bg-gray-100 py-0.5 px-2 inline-block rounded-md text-sm border border-gray-200">
+                            رتّب الخطوات التالية من 1 إلى 3 لمساعدته على تغيير إسم ورقة العمل: <span
+                                class="text-gray-500 font-normal">(3 نقاط)</span></p>
+                        <div class="space-y-2 pr-4 font-medium text-gray-800">
+                            <div class="flex items-center bg-white p-1.5 border border-gray-200 rounded-md shadow-sm">
+                                <div
+                                    class="border-2 border-gray-400 w-6 h-6 rounded text-center leading-5 font-bold ml-2">
+                                </div>
+                                <p>قم بكتابة الاسم الجديد لورقة العمل ثم اضغط على (Entrée).</p>
+                            </div>
+                            <div class="flex items-center bg-white p-1.5 border border-gray-200 rounded-md shadow-sm">
+                                <div
+                                    class="border-2 border-gray-400 w-6 h-6 rounded text-center leading-5 font-bold ml-2">
+                                </div>
+                                <p>أنقر على اسم ورقة العمل بالزر الأيمن للفأرة.</p>
+                            </div>
+                            <div class="flex items-center bg-white p-1.5 border border-gray-200 rounded-md shadow-sm">
+                                <div
+                                    class="border-2 border-gray-400 w-6 h-6 rounded text-center leading-5 font-bold ml-2">
+                                </div>
+                                <p>تظهر قائمة، اختر منها (Renommer) وانقر عليها بالزر الأيسر للفأرة.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- السؤال 2 -->
+                    <div>
+                        <p class="font-bold mb-1">2. لاحظ أحمد أن اتجاه ورقة العمل من اليسار إلى اليمين، ويريد تغيير
+                            الاتجاه ليصبح من اليمين إلى اليسار.</p>
+                        <p class="mb-2 text-gray-700 font-medium text-sm">أذكر التعليمتين (التبويب ثم الأداة) للقيام
+                            بذلك: <span class="text-gray-500 font-normal">(نقطتان)</span></p>
+                        <div class="space-y-2 pr-4">
+                            <div class="flex items-center">
+                                <span
+                                    class="bg-gray-800 text-white w-6 h-6 rounded-full text-center leading-6 ml-2 font-bold text-sm">1</span>
+                                <span class="font-bold text-gray-700 ml-2">النقر على التبويب:</span>
+                                <span class="dot-leader max-w-xs"></span>
+                            </div>
+                            <div class="flex items-center">
+                                <span
+                                    class="bg-gray-800 text-white w-6 h-6 rounded-full text-center leading-6 ml-2 font-bold text-sm">2</span>
+                                <span class="font-bold text-gray-700 ml-2">النقر على الأداة:</span>
+                                <span class="dot-leader max-w-xs"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- السؤال 3 -->
+                    <div>
+                        <p class="font-bold mb-2">3. أثناء تنسيق الجدول، احتاج أحمد لاستخدام تعليمة التنسيق (Format).
+                            أربط كل أداة بدورها المناسب: <span class="text-gray-500 font-normal text-sm ml-2">(3
+                                نقاط)</span></p>
+                        <div
+                            class="flex justify-between items-center px-6 text-center font-bold bg-white p-3 border border-gray-200 rounded-xl shadow-inner relative">
+                            <!-- خطوط الربط الوهمية -->
+                            <div
+                                class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+                                <div class="w-1/2 h-full border-l-2 border-r-2 border-dashed border-gray-800"></div>
+                            </div>
+
+                            <div class="space-y-4 text-left z-10" dir="ltr">
+                                <div class="flex items-center justify-end group">
+                                    <p class="bg-gray-100 px-3 py-1 rounded border border-gray-300 font-mono text-sm">
+                                        Hauteur de ligne</p>
+                                    <span
+                                        class="inline-block w-3 h-3 bg-gray-400 rounded-full ml-3 border-2 border-white"></span>
+                                </div>
+                                <div class="flex items-center justify-end group">
+                                    <p class="bg-gray-100 px-3 py-1 rounded border border-gray-300 font-mono text-sm">
+                                        Largeur de colonne</p>
+                                    <span
+                                        class="inline-block w-3 h-3 bg-gray-400 rounded-full ml-3 border-2 border-white"></span>
+                                </div>
+                                <div class="flex items-center justify-end group">
+                                    <p class="bg-gray-100 px-3 py-1 rounded border border-gray-300 font-mono text-sm">
+                                        Protéger la feuille</p>
+                                    <span
+                                        class="inline-block w-3 h-3 bg-gray-400 rounded-full ml-3 border-2 border-white"></span>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4 text-right z-10">
+                                <div class="flex items-center group">
+                                    <span
+                                        class="inline-block w-3 h-3 bg-gray-400 rounded-full mr-3 border-2 border-white"></span>
+                                    <p class="bg-gray-50 px-3 py-1 rounded border border-gray-200 text-sm">تسمح بوضع
+                                        كلمة مرور للورقة الحسابية.</p>
+                                </div>
+                                <div class="flex items-center group">
+                                    <span
+                                        class="inline-block w-3 h-3 bg-gray-400 rounded-full mr-3 border-2 border-white"></span>
+                                    <p class="bg-gray-50 px-3 py-1 rounded border border-gray-200 text-sm">تسمح بضبط
+                                        ارتفاع السطر.</p>
+                                </div>
+                                <div class="flex items-center group">
+                                    <span
+                                        class="inline-block w-3 h-3 bg-gray-400 rounded-full mr-3 border-2 border-white"></span>
+                                    <p class="bg-gray-50 px-3 py-1 rounded border border-gray-200 text-sm">تسمح بضبط عرض
+                                        العمود.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- السؤال 4 -->
+                    <div>
+                        <p class="font-bold mb-2">4. أذكر الخطوتين الأساسيتين من تبويب (Fichier) للقيام بعملية الحفظ:
+                            <span class="text-gray-500 font-normal text-sm ml-2">(نقطتان)</span>
+                        </p>
+                        <div class="space-y-2 pr-4 bg-gray-50 p-3 rounded-lg border border-gray-200">
+                            <p class="flex items-center"><span
+                                    class="bg-gray-300 text-gray-800 w-5 h-5 rounded-full text-center leading-5 ml-2 font-bold text-xs inline-block">1</span>
+                                النقر على التبويب <strong class="mx-1" dir="ltr">Fichier</strong>.</p>
+                            <p class="flex items-center"><span
+                                    class="bg-gray-300 text-gray-800 w-5 h-5 rounded-full text-center leading-5 ml-2 font-bold text-xs inline-block">2</span>
+                                النقر على التعليمة: <span class="dot-leader max-w-xs"></span></p>
+                            <p class="flex items-center"><span
+                                    class="bg-gray-300 text-gray-800 w-5 h-5 rounded-full text-center leading-5 ml-2 font-bold text-xs inline-block">3</span>
+                                تحديد المجلد المناسب ثم النقر على <span class="dot-leader w-24 mx-2"></span> مرة أخرى.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- تذييل الصفحة -->
+        <div
+            class="absolute bottom-3 left-0 w-full text-center text-xs text-gray-800 font-bold uppercase tracking-wider">
+            ── الصفحة 2 / 2 - بالتوفيق والنجاح ──
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- ورقة التصحيح (الصفحة 2 - شاملة للوضعيتين) -->
+    <!-- ========================================== -->
+    <div class="a4-page correction-page relative overflow-hidden">
+        <div
+            class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none transform -rotate-45 text-8xl font-black text-green-900 select-none">
+            تصحيح نموذجي
+        </div>
+
+        <div class="page-content relative z-10 pt-2">
+            <div class="border-b-4 border-double border-green-700 pb-1 mb-2 text-center bg-green-50 p-1 rounded-t-xl">
+                <h1 class="text-xl font-black text-green-800 mb-0">التصحيح النموذجي وسلم التنقيط</h1>
+                <p class="font-bold text-gray-700 text-sm">إختبار الفصل الثاني في مادة المعلوماتية - السنة الرابعة متوسط
+                </p>
+            </div>
+
+            <!-- الوضعيات -->
+            <div class="mb-1">
+                <div
+                    class="flex justify-between items-center border-b border-green-300 pb-0.5 mb-1 bg-green-50/50 px-3 rounded-t-lg">
+                    <h2 class="text-base font-bold text-green-800 section-title before:bg-green-600">الوضعية الأولى:
+                    </h2>
+                    <span class="font-bold text-green-700 bg-green-200 px-2 rounded-full text-[10px]">(10 نقاط)</span>
+                </div>
+
+                <div class="space-y-2 pr-3">
+                    <div class="mb-1.5">
+                        <p class="font-bold text-gray-800 mb-0.5 bg-gray-100 inline-block px-1.5 rounded text-sm">1.
+                            إكمال الفراغات: <span class="text-red-600 font-bold ml-1">(4 نقاط)</span></p>
+                        <ul
+                            class="list-disc list-inside space-y-0.5 text-gray-800 pr-3 mt-0.5 border-r-2 border-green-200 text-sm">
+                            <li><span class="font-bold">المصنف:</span> هو عنصر يحتوي على مجموعة من <strong
+                                    class="text-blue-700 bg-blue-50 px-1 rounded border-b border-blue-400">أوراق
+                                    العمل</strong>. <span
+                                    class="text-red-600 font-bold text-xs bg-red-50 px-1 py-0.5 rounded-full mr-1">(2
+                                    ن)</span></li>
+                            <li><span class="font-bold">ورقة العمل:</span> أعمدته معنونة بـ
+                                <strong
+                                    class="text-blue-700 bg-blue-50 px-1 rounded border-b border-blue-400">أحرف</strong>
+                                <span class="text-red-600 font-bold text-xs bg-red-50 px-1 py-0.5 rounded-full mr-1">(1
+                                    ن)</span> وصفوفه معنونة بـ <strong
+                                    class="text-blue-700 bg-blue-50 px-1 rounded border-b border-blue-400">أعداد</strong>.
+                                <span class="text-red-600 font-bold text-xs bg-red-50 px-1 py-0.5 rounded-full mr-1">(1
+                                    ن)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-1.5">
+                        <p class="font-bold text-gray-800 mb-0.5 bg-gray-100 inline-block px-1.5 rounded text-sm">2.
+                            معنى الخلية (B5): <span class="text-red-600 font-bold ml-1">(3 نقاط)</span></p>
+                        <p class="text-gray-800 pr-3 border-r-2 border-green-200 mt-0.5 text-sm">
+                            تعني الخلية الناتجة عن <strong
+                                class="text-blue-700 bg-blue-50 px-1 py-0.5 rounded border-b border-blue-400">تقاطع
+                                العمود (B) مع السطر (5)</strong>.
+                            <span class="text-red-600 font-bold text-xs bg-red-50 px-1 py-0.5 rounded-full mr-1">(3
+                                ن)</span>
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="font-bold text-gray-800 mb-0.5 bg-gray-100 inline-block px-1.5 rounded text-sm">3.
+                            صحيح أو خطأ مع التصحيح: <span class="text-red-600 font-bold ml-1">(3 نقاط)</span></p>
+                        <div class="space-y-1.5 text-gray-800 pr-3 mt-0.5 border-r-2 border-green-200 text-sm">
+                            <div class="bg-gray-50 p-1.5 rounded-lg border border-gray-200">
+                                <p class="font-medium text-gray-900 mb-0.5 text-sm">أ) يمكننا حذف جميع أوراق العمل... :
+                                    <strong
+                                        class="text-white bg-red-600 px-1.5 py-0.5 rounded shadow-sm text-xs">خطأ</strong>
+                                    <span class="text-red-600 font-bold text-xs bg-red-50 px-1 rounded-full mr-1">(0.5
+                                        ن)</span>
+                                </p>
+                                <p class="pr-2 bg-blue-50 p-1 rounded border border-blue-100 text-xs text-blue-900">
+                                    <span class="font-bold">التصحيح:</span> يمكن إضافة أو حذف أوراق العمل <strong
+                                        class="text-blue-700">بشرط ألا يقل عددها عن الورقة الواحدة</strong>.
+                                    <span class="text-red-600 font-bold text-xs bg-red-100 px-1 rounded-full mr-1">(1
+                                        ن)</span>
+                                </p>
+                            </div>
+                            <div class="bg-gray-50 p-1.5 rounded-lg border border-gray-200">
+                                <p class="font-medium text-gray-900 mb-0 text-sm">ب) لتنسيق محتوى الخلية نستخدم نفس
+                                    الطريقة... :
+                                    <strong
+                                        class="text-white bg-green-600 px-1.5 py-0.5 rounded shadow-sm text-xs">صحيح</strong>
+                                    <span class="text-red-600 font-bold text-xs bg-red-50 px-1 rounded-full mr-1">(1.5
+                                        ن)</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الوضعية الثانية تصحيح -->
+            <div>
+                <div
+                    class="flex justify-between items-center border-b border-green-300 pb-0.5 mb-1.5 bg-green-50/50 px-3 rounded-t-lg">
+                    <h2 class="text-base font-bold text-green-800 section-title before:bg-green-600">الوضعية الثانية:
+                    </h2>
+                    <span class="font-bold text-green-700 bg-green-200 px-2 rounded-full text-xs">(10 نقاط)</span>
+                </div>
+
+                <div class="space-y-2 pr-3">
+                    <div class="mb-1">
+                        <p class="font-bold text-gray-800 mb-0.5 bg-gray-100 inline-block px-1.5 rounded text-sm">1.
+                            ترتيب خطوات تغيير اسم ورقة العمل: <span class="text-red-600 font-bold text-xs ml-1">(3
+                                نقاط)</span></p>
+                        <div
+                            class="space-y-1 text-gray-800 font-medium pr-3 mt-0.5 border-r-2 border-green-200 text-xs">
+                            <div class="flex items-center bg-blue-50 p-1 rounded border border-blue-100">
+                                <span
+                                    class="inline-block bg-blue-600 text-white font-bold w-5 h-5 text-center leading-5 mr-1.5 rounded shadow-sm text-[10px]">3</span>
+                                <p>كتابة الاسم الجديد لورقة العمل ثم (Entrée).</p>
+                            </div>
+                            <div class="flex items-center bg-blue-50 p-1 rounded border border-blue-100">
+                                <span
+                                    class="inline-block bg-blue-600 text-white font-bold w-5 h-5 text-center leading-5 mr-1.5 rounded shadow-sm text-[10px]">1</span>
+                                <p>النقر على اسم ورقة العمل بالزر الأيمن.</p>
+                            </div>
+                            <div class="flex items-center bg-blue-50 p-1 rounded border border-blue-100">
+                                <span
+                                    class="inline-block bg-blue-600 text-white font-bold w-5 h-5 text-center leading-5 mr-1.5 rounded shadow-sm text-[10px]">2</span>
+                                <p>اختيار (Renommer) والنقر بالزر الأيسر.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-1">
+                        <p class="font-bold text-gray-800 mb-0.5 bg-gray-100 inline-block px-1.5 rounded text-sm">2.
+                            تغيير اتجاه الورقة: <span class="text-red-600 font-bold text-xs ml-1">(نقطتان)</span></p>
+                        <div class="text-gray-800 pr-3 border-r-2 border-green-200 space-y-1 font-medium text-xs">
+                            <p class="bg-gray-50 p-1 rounded border border-gray-200">1- التبويب: <strong
+                                    class="text-blue-700 bg-blue-100 px-1 py-0.5 rounded mx-1" dir="ltr">MISE EN
+                                    PAGE</strong> <span
+                                    class="text-red-600 font-bold text-xs bg-red-50 px-1 rounded-full mr-1">(1 ن)</span>
+                            </p>
+                            <p class="bg-gray-50 p-1 rounded border border-gray-200">2- الأداة: <strong
+                                    class="text-blue-700 bg-blue-100 px-1 py-0.5 rounded mx-1" dir="ltr">Feuille de
+                                    droite à gauche</strong> <span
+                                    class="text-red-600 font-bold text-xs bg-red-50 px-1 rounded-full mr-1">(1 ن)</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mb-1">
+                        <p class="font-bold text-gray-800 mb-0.5 bg-gray-100 inline-block px-1.5 rounded text-sm">3.
+                            الربط بسهم (التعليمة Format): <span class="text-red-600 font-bold text-xs ml-1">(3
+                                نقاط)</span></p>
+                        <div
+                            class="text-gray-800 space-y-1.5 bg-yellow-50 p-2 rounded-lg border border-yellow-300 mt-0.5 font-bold shadow-sm text-[11px] leading-tight flex flex-col justify-center">
+
+                            <div class="flex justify-between items-center border-b border-yellow-200 pb-0.5">
+                                <strong dir="ltr"
+                                    class="text-blue-800 bg-white px-1.5 py-0.5 rounded border border-blue-200">Hauteur
+                                    de ligne</strong>
+                                <div class="flex-grow flex items-center px-1">
+                                    <div class="h-px w-full bg-blue-400 relative">
+                                        <div
+                                            class="absolute left-0 -top-1 w-0 h-0 border-t-2 border-b-2 border-r-2 border-transparent border-r-blue-400">
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="bg-white px-1 py-0.5 rounded border border-gray-200">ضبط ارتفاع
+                                    السطر</span>
+                            </div>
+
+                            <div class="flex justify-between items-center border-b border-yellow-200 pb-0.5 pt-0.5">
+                                <strong dir="ltr"
+                                    class="text-blue-800 bg-white px-1.5 py-0.5 rounded border border-blue-200">Largeur
+                                    de colonne</strong>
+                                <div class="flex-grow flex items-center px-1">
+                                    <div class="h-px w-full bg-blue-400 relative">
+                                        <div
+                                            class="absolute left-0 -top-1 w-0 h-0 border-t-2 border-b-2 border-r-2 border-transparent border-r-blue-400">
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="bg-white px-1 py-0.5 rounded border border-gray-200">ضبط عرض العمود</span>
+                            </div>
+
+                            <div class="flex justify-between items-center pt-0.5">
+                                <strong dir="ltr"
+                                    class="text-blue-800 bg-white px-1.5 py-0.5 rounded border border-blue-200">Protéger
+                                    la feuille</strong>
+                                <div class="flex-grow flex items-center px-1">
+                                    <div class="h-px w-full bg-blue-400 relative">
+                                        <div
+                                            class="absolute left-0 -top-1 w-0 h-0 border-t-2 border-b-2 border-r-2 border-transparent border-r-blue-400">
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="bg-white px-1 py-0.5 rounded border border-gray-200">وضع كلمة مرور</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="font-bold text-gray-800 mb-0.5 bg-gray-100 inline-block px-1.5 rounded text-sm">4.
+                            خطوات الحفظ: <span class="text-red-600 font-bold text-xs ml-1">(نقطتان)</span></p>
+                        <div class="text-gray-800 pr-3 border-r-2 border-green-200 space-y-1 font-medium text-xs">
+                            <p class="bg-gray-50 p-1 rounded border border-gray-200">1- النقر على التبويب Fichier.</p>
+                            <p class="bg-gray-50 p-1 rounded border border-gray-200">2- النقر على <strong
+                                    class="text-blue-700 bg-blue-100 px-1 rounded mx-1" dir="ltr">Enregistrer</strong>.
+                                <span class="text-red-600 font-bold bg-red-50 px-1 rounded-full">(1 ن)</span>
+                            </p>
+                            <p class="bg-gray-50 p-1 rounded border border-gray-200">3- تحديد المجلد والنقر على <strong
+                                    class="text-blue-700 bg-blue-100 px-1 rounded mx-1" dir="ltr">Enregistrer</strong>.
+                                <span class="text-red-600 font-bold bg-red-50 px-1 rounded-full">(1 ن)</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- تذييل الصفحة -->
+        <div class="absolute bottom-3 left-0 w-full text-center text-[10px] text-green-700 font-bold tracking-wider">
+            ── التصحيح النموذجي ──
+        </div>
+    </div>
+</body>
+
+</html>
