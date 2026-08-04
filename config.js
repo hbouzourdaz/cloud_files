@@ -14,7 +14,7 @@ const APP_CONFIG = {
 
     // إعدادات GitHub (المعلومات العامة فقط — التوكن مخزن في JSONBin)
     GITHUB: {
-        REPO: 'hbouzourdaz/cloud',
+        REPO: 'hbouzourdaz/cloud_files',
         BRANCH: 'main'
     },
 
